@@ -1,0 +1,38 @@
+<html>
+    <title>
+        ИИС лаб 1
+    </title>
+    <head>
+
+    </head>
+    <body>
+        <div>
+            <div>
+                <p>Напишите данные, по которым надо сделать вывод </p>
+                <p>Формат:</p> 
+                <p>признак1: значение1, признак2: значение2, ...</p>
+                <div>
+                    <textarea style="width: 400; height: 200" id="req"></textarea>
+                    <button id="submit">Сделать вывод</button>
+                </div>
+                <div id="output"></div>
+            </div>
+        </div>
+    </body>
+</html>
+<script rel="javascript" type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script rel="javascript" type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" href="../static/js/jquery-1.11.3.min.js">
+    document.getElementById('submit').addEventListener('click', function(){
+        console.log(document.getElementById('req').value)
+        $.ajax({
+            type: 'GET',
+            url: '/output',
+            data: {
+                'input': document.getElementById('req').value
+            }
+        }).done(ans=>{
+            document.getElementById('output').innerHTML = ans
+        })
+    })
+</script>
